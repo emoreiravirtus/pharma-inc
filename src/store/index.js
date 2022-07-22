@@ -2,21 +2,21 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    users: []
+    users: [],
   },
   mutations: {
-    setUsers: (state, users) => state.users = users
+    setUsers: (state, users) => (state.users = users),
   },
   getters: {
-    users: state => state.users
+    users: (state) => state.users,
   },
   actions: {
     async getUsersList(context) {
-        
-      const response = await fetch('https://randomuser.me/api/?results=50');
+      const response = await fetch("https://randomuser.me/api/?results=50");
       const users = await response.json();
+      console.log(users.results);
 
-      context.commit('setUsers', users);
+      context.commit("setUsers", users.results);
     },
   },
   modules: {},

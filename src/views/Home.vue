@@ -3,8 +3,7 @@
   <Modal />
   <NavBar />
   <SearchingBar />
-  <Table />
-  {{ users }}
+  <Table :users="users"/>
 </template>
 
 <script>
