@@ -1,0 +1,7 @@
+@each $svgName, $path in $svgs {
+  @each $colorName, $color in $colors {
+    .svg-#{$svgName}-#{$colorName} {
+      @include svg-icon($path, $icon-size, $icon-size, $color);
+    }
+  }
+}
