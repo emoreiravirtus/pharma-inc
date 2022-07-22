@@ -4,6 +4,7 @@
   <NavBar />
   <SearchingBar />
   <Table />
+  {{ users }}
 </template>
 
 <script>
@@ -24,6 +25,14 @@ export default {
     SearchingBar,
     Table,
   },
+  beforeMount() {
+    this.$store.dispatch("getUsersList");
+  },
+  computed: {
+    users() {
+      return this.$store.getters["users"];
+    }
+  }
 };
 </script>
 
