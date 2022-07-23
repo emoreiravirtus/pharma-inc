@@ -1,8 +1,12 @@
 <template>
-  <Loading />
-  <Modal />
-  <SearchingBar />
-  <Table :users="users"/>
+  <div class="container">
+    <Modal>
+      <p>Elias</p>
+    </Modal>
+    <SearchingBar />
+    <Table :users="users"/>
+    <Loading :visible="isLoading"/>
+  </div> 
 </template>
 
 <script>
@@ -21,7 +25,13 @@ export default {
     SearchingBar,
     Table,
   },
+  data() {
+    return {
+      isLoading: false
+    }
+  },
   beforeMount() {
+    this.isLoading = true;
     this.$store.dispatch("getUsersList");
   },
   computed: {

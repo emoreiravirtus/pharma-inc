@@ -3,14 +3,20 @@
 $colors: (
   primary: #1A4F8B,
   secondary: #BF1541,
-  facebook: #385C8E,
-  google: #F14436,
   light: #FFFFFF,
   dark: #000000,
   normal-gray: #B0B0B0,
   light-gray: #C3C3C3,
   dark-gray: #767676
 );
+
+$colors-primary: map-get($colors, 'primary');
+$colors-secondary: map-get($colors, 'secondary');
+$colors-light: map-get($colors, 'light');
+$colors-dark: map-get($colors, 'dark');
+$colors-normal-gray: map-get($colors, 'normal-gray');
+$colors-light-gray: map-get($colors, 'light-gray');
+$colors-dark-gray: map-get($colors, 'dark-gray');
 
 $spaccings: (
   xxl: 50,
@@ -45,14 +51,6 @@ $font-weights: (
   l: 700,
   m: 400,
   s: 300
-);
-
-$border-radius-sizes: (
-  5,
-  10,
-  15,
-  30,
-  100
 );
 
 $svgs: (

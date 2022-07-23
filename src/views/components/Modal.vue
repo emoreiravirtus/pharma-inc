@@ -1,5 +1,7 @@
 <template>
-  <p>Modal Component</p>
+  <div class="container">
+    <slot></slot>
+  </div>
 </template>
 
 <script>

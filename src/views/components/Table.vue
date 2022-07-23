@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="container">
     <tr>
       <th>Name</th>
       <th>Gender</th>
