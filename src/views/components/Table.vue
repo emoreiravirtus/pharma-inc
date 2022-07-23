@@ -6,9 +6,7 @@
       <th>Birth</th>
       <th>Actions</th>
     </tr>
-    <tr v-for="(user, index) of users" :key="index">
-      <TableItem :user="user" />
-    </tr>
+    <TableItem v-for="(user, index) of users" :key="index" :user="user" />
   </table>
 </template>
 
