@@ -12,8 +12,8 @@ export default {
 
 <style lang="scss">
   .button {
-    border: 2px solid $colors-primary;
-    color: $colors-primary;
+    border: 2px solid $colors-secondary;
+    color: $colors-secondary;
     font-weight: 600;
     letter-spacing: .5px;
     text-transform: uppercase;
@@ -23,7 +23,7 @@ export default {
     transition: .4s;
 
     &:hover {
-      background: $colors-primary;
+      background: $colors-secondary;
       color: $colors-light;
     }
   }

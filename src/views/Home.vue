@@ -5,7 +5,7 @@
     </Modal>
     <SearchingBar />
     <Table :users="users"/>
-    <Loading :visible="isLoading"/>
+    <Loading @click="isLoading = !isLoading" :isLoading="isLoading"/>
   </div> 
 </template>
 

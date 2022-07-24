@@ -1,6 +1,6 @@
 <template>
-  <tr class="table-item">
-    <td>{{ user.name.first }} {{ user.name.last }}</td>
+  <tr class="table-item shadowed">
+    <td class="font-m-m">{{ user.name.first }} {{ user.name.last }}</td>
     <td>
       <img v-if="user.gender === 'male'" class="svg-icon-male-primary">
       <img v-else class="svg-icon-female-secondary">
@@ -41,7 +41,6 @@ export default {
 
 <style lang="scss">
 .table-item {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin: 15px;
   border-radius: 5px;
 

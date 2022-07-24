@@ -1,22 +1,32 @@
 <template>
-  <div v-if="visible" class="container">
+  <div class="m-m">
+  <div class="container loading-container clickable">
     <div class="row">
-      <div class="col-12">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12 center font-s-l">
+            <p v-if="!isLoading">Load More</p>
+            <p v-if="isLoading">Loading</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 center">
         <div class="loading-icon container center p-xxs">
           <div class="row">
             <div class="col-4 center">
-              <div class="loading-ball loading-ball__first"></div>
+              <div class="loading-ball shadowed loading-ball__first" :class="{'loading-ball__animated': isLoading}"></div>
             </div>
             <div class="col-4 center">
-              <div class="loading-ball loading-ball__second"></div>
+              <div class="loading-ball shadowed loading-ball__second" :class="{'loading-ball__animated': isLoading}"></div>
             </div>
             <div class="col-4 center">
-              <div class="loading-ball loading-ball__third"></div>
+              <div class="loading-ball shadowed loading-ball__third" :class="{'loading-ball__animated': isLoading}"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -24,7 +34,7 @@
 export default {
   name: "Loading",
   props: {
-    visible: {
+    isLoading: {
       type: Boolean,
       default: () => false
     }
@@ -33,18 +43,27 @@ export default {
 </script>
 
 <style lang="scss">
+.loading-container {
+  width: 250px;
+  border: 2px solid $colors-primary;
+  border-radius: 20px;
+  color: $colors-primary;
+}
+
 .loading-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: $colors-secondary;
+  width: 25px;
+  height: 25px;
 
   .loading-ball {
-    width: 10px;
-    height: 10px;
-    background: $colors-light;
+    width: 5px;
+    height: 5px;
+    background: $colors-primary;
     border-radius: 50%;
-    animation: 1.5s infinite loading;
+    transition: all .5s;
+
+    &__animated {
+      animation: 1.5s infinite loading;
+    }
 
     &__first {
       animation-delay: 0s;

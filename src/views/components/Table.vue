@@ -1,6 +1,6 @@
 <template>
   <table class="container">
-    <tr>
+    <tr class="font-primary">
       <th>Name</th>
       <th>Gender</th>
       <th>Birth</th>
@@ -29,4 +29,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+  table {
+    border-collapse:separate; 
+    border-spacing: 0 10px;
+  }
+</style>

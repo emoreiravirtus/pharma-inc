@@ -14,10 +14,13 @@ body {
 
       &-#{$weightName}{
         font-weight: $weight;
+        font-size: $size;
 
         @each $lineHeightName, $height in $line-heights {
           &-#{$lineHeightName} {
             line-height: $height;
+            font-weight: $weight;
+            font-size: $size;
           }
         }
 
