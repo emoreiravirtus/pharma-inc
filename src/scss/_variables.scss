@@ -7,7 +7,7 @@ $colors: (
   dark: #000000,
   normal-gray: #B0B0B0,
   light-gray: #C3C3C3,
-  dark-gray: #767676
+  dark-gray: #767676,
 );
 
 $colors-primary: map-get($colors, 'primary');
@@ -58,6 +58,7 @@ $svgs: (
   icon-user: './assets/user-icon.svg',
   icon-male: './assets/male-icon.svg',
   icon-female: './assets/female-icon.svg',
+  icon-close: './assets/close-icon.svg',
 );
 
 $grid-cols: 12;

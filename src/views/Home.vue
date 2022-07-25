@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <Modal>
+    <Modal :isOpened="isOpened" @closeModal="setIsOpened(false)">
       <p>Elias</p>
     </Modal>
     <SearchingBar />
     <Table :users="users"/>
-    <Loading @click="isLoading = !isLoading" :isLoading="isLoading"/>
+    <Loading @click="loadMore" :isLoading="isLoading"/>
   </div> 
 </template>
 
@@ -25,18 +25,32 @@ export default {
     SearchingBar,
     Table,
   },
-  data() {
+  data () {
     return {
-      isLoading: false
+      isOpened: false,
+      page: 1
     }
   },
   beforeMount() {
-    this.isLoading = true;
-    this.$store.dispatch("getUsersList");
+    this.$store.dispatch("addToUserList", this.page);
+    this.$store.dispatch("getFocusedUser");
+    this.page = this.page + 1;
+  },
+  methods: {
+    setIsOpened(value) {
+      return this.isOpened = value;
+    },
+    loadMore() {
+      this.$store.dispatch("addToUserList", this.page);
+      this.page = this.page + 1;
+    }
   },
   computed: {
     users() {
       return this.$store.getters["users"];
+    },
+    isLoading() {
+      return this.$store.getters["isLoading"];
     }
   }
 };

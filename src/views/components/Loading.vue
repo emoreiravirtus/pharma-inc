@@ -48,6 +48,11 @@ export default {
   border: 2px solid $colors-primary;
   border-radius: 20px;
   color: $colors-primary;
+  transition: .2s all;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
 .loading-icon {

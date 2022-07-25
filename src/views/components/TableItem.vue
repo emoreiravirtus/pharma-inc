@@ -1,5 +1,8 @@
 <template>
   <tr class="table-item shadowed">
+    <td>
+      <img class="profile-thumbnail" :src="user.picture.thumbnail">
+    </td>
     <td class="font-m-m">{{ user.name.first }} {{ user.name.last }}</td>
     <td>
       <img v-if="user.gender === 'male'" class="svg-icon-male-primary">
@@ -9,7 +12,7 @@
       {{ birthDate }}
     </td>
     <td>
-      <Button>More</Button>
+      <Button @click="setFocusedUser">More</Button>
     </td>
   </tr>
 </template>
@@ -31,6 +34,11 @@ export default {
       },
     },
   },
+  methods: {
+    setCurrentUrl() {
+      this.dispatch('setFocusedUser', this.user.id.value);
+    }
+  },
   computed: {
     birthDate() {
       return formatDate(new Date(this.user.dob.date));
@@ -42,10 +50,14 @@ export default {
 <style lang="scss">
 .table-item {
   margin: 15px;
-  border-radius: 5px;
+  border-radius: 30px 0 0 30px;
 
   td {
   padding: 10px;
+
+    .profile-thumbnail {
+      border-radius: 50%;
+    }
   }
 }
 </style>

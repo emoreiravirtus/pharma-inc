@@ -1,6 +1,7 @@
 <template>
   <table class="container">
     <tr class="font-primary">
+      <th></th>
       <th>Name</th>
       <th>Gender</th>
       <th>Birth</th>
@@ -25,7 +26,7 @@ export default {
         return [];
       },
     },
-  },
+  }
 };
 </script>
 
