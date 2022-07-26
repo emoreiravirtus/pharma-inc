@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <Modal :isOpened="isOpened" @closeModal="setIsOpened(false)">
+    <Modal>
       <p>Elias</p>
     </Modal>
     <SearchingBar />
-    <Table :users="users"/>
+    <Table />
     <Loading @click="loadMore" :isLoading="isLoading"/>
   </div> 
 </template>
@@ -27,28 +27,22 @@ export default {
   },
   data () {
     return {
-      isOpened: false,
       page: 1
     }
   },
-  beforeMount() {
-    this.$store.dispatch("addToUserList", this.page);
+  async beforeMount()  {
+    await this.$store.dispatch("addToUserList", this.page);
     this.$store.dispatch("getFocusedUser");
+    this.$store.dispatch("filterUsers");
     this.page = this.page + 1;
   },
   methods: {
-    setIsOpened(value) {
-      return this.isOpened = value;
-    },
     loadMore() {
       this.$store.dispatch("addToUserList", this.page);
       this.page = this.page + 1;
     }
   },
   computed: {
-    users() {
-      return this.$store.getters["users"];
-    },
     isLoading() {
       return this.$store.getters["isLoading"];
     }

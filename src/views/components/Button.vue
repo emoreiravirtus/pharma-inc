@@ -20,7 +20,7 @@ export default {
     font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
-    transition: .4s;
+    transition: .2s;
 
     &:hover {
       background: $colors-secondary;

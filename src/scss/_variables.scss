@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
 $colors: (
-  primary: #1A4F8B,
-  secondary: #BF1541,
+  primary: #bb2760,
+  secondary: #0f9bbb,
   light: #FFFFFF,
   dark: #000000,
   normal-gray: #B0B0B0,
@@ -59,6 +59,8 @@ $svgs: (
   icon-male: './assets/male-icon.svg',
   icon-female: './assets/female-icon.svg',
   icon-close: './assets/close-icon.svg',
+  icon-ascending: './assets/ascending-icon.svg',
+  icon-searching: './assets/searching-icon.svg',
 );
 
 $grid-cols: 12;

@@ -2,7 +2,7 @@
   <div v-if="isOpened" class="modal-back"></div>
   <div v-if="isOpened" class="container center modal-container shadowed">
     <div class="container">
-      <img class="svg-icon-close-secondary" @click="closeModal">
+      <img class="svg-icon-close-secondary clickable" @click="closeModal">
       <slot></slot>
     </div>
   </div>
@@ -11,18 +11,14 @@
 <script>
 export default {
   name: "Modal",
-  beforeMount() {},
-  props: {
-    isOpened: {
-      type: Boolean,
-      default: () => {
-        return false
-      }
-    }
-  },
   methods: {
     closeModal () {
-      this.$emit('closeModal');
+      this.$store.dispatch('setIsOpened', false);
+    }
+  },
+  computed: {
+    isOpened() {
+      return this.$store.getters['isOpened'];
     }
   }
 };

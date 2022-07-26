@@ -1,12 +1,14 @@
 <template>
   <tr class="table-item shadowed">
     <td>
-      <img class="profile-thumbnail" :src="user.picture.thumbnail">
+      <img class="profile-thumbnail" :src="user.picture.thumbnail" />
     </td>
     <td class="font-m-m">{{ user.name.first }} {{ user.name.last }}</td>
     <td>
-      <img v-if="user.gender === 'male'" class="svg-icon-male-primary">
-      <img v-else class="svg-icon-female-secondary">
+      <div class="center">
+        <img v-if="user.gender === 'male'" class="svg-icon-male-primary" />
+        <img v-else class="svg-icon-female-secondary" />
+      </div>
     </td>
     <td>
       {{ birthDate }}
@@ -19,7 +21,7 @@
 
 <script>
 import Button from "./Button.vue";
-import formatDate from '@/util/formatDate.js'
+import formatDate from "@/util/formatDate.js";
 
 export default {
   name: "TableItem",
@@ -35,15 +37,15 @@ export default {
     },
   },
   methods: {
-    setCurrentUrl() {
-      this.dispatch('setFocusedUser', this.user.id.value);
-    }
+    setFocusedUser() {
+      this.$store.dispatch("setFocusedUser", this.user.id.value);
+    },
   },
   computed: {
     birthDate() {
       return formatDate(new Date(this.user.dob.date));
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -53,7 +55,7 @@ export default {
   border-radius: 30px 0 0 30px;
 
   td {
-  padding: 10px;
+    padding: 10px;
 
     .profile-thumbnail {
       border-radius: 50%;

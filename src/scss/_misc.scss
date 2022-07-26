@@ -5,3 +5,7 @@
 .shadowed {
   box-shadow: rgb(108 96 111 / 30%) -10px 6px 60px 10px;
 }
+
+.inverted {
+  transform: rotate(180deg);
+}

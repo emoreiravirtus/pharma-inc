@@ -64,7 +64,7 @@ export default {
     height: 5px;
     background: $colors-primary;
     border-radius: 50%;
-    transition: all .5s;
+    transition: all .2s;
 
     &__animated {
       animation: 1.5s infinite loading;

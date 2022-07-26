@@ -9,7 +9,9 @@
           </div>
         </div>
         <div class="col-4 right pr-m">
-          <img class="svg-icon-female-primary" />
+          <div class="row">
+            <img class="svg-icon-user-primary col-12" />
+          </div>
         </div>
       </div>
     </div>
