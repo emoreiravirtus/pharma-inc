@@ -1,4 +1,5 @@
-# Railsware Project
+# Pharma-Inc Project - Check live result here -> [APP URL](https://pharma-inc-elias.web.app/)
+A frontend app that gets data from https://randomuser.me/api/
 
 ## Project setup
 ```
@@ -15,20 +16,7 @@ npm run serve
 npm run build
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
