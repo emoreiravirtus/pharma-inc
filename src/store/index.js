@@ -42,7 +42,7 @@ export default createStore({
       context.dispatch("setIsLoading", true);
 
       const response = await fetch(
-        `https://randomuser.me/api/?page=${page}&results=50&seed=pharmaincelias`
+        `${process.env.VUE_APP_API_URL}?page=${page}&results=50&seed=pharmaincelias`
       );
       const { results } = await response.json();
 
@@ -70,7 +70,7 @@ export default createStore({
       const page = getPageNumber(id);
 
       const response = await fetch(
-        `https://randomuser.me/api/?page=${page}&results=50&seed=pharmaincelias`
+        `${process.env.VUE_APP_API_URL}?page=${page}&results=50&seed=pharmaincelias`
       );
       const { results } = await response.json();
       const user = results[Number(id) - page * 50 + 49];

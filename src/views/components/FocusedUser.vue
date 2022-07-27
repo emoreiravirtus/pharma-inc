@@ -95,7 +95,7 @@ export default {
       return this.$route.params.id;
     },
     userURL() {
-      return `localhost:8080/${this.userId}`;
+      return `${process.env.VUE_APP_BASE_URL_DEV}${this.userId}`;
     },
   },
 };
