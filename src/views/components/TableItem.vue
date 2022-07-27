@@ -14,7 +14,7 @@
       {{ birthDate }}
     </td>
     <td>
-      <Button @click="setFocusedUser">More</Button>
+      <Button @click="goToSelectedUser">More</Button>
     </td>
   </tr>
 </template>
@@ -37,8 +37,10 @@ export default {
     },
   },
   methods: {
-    setFocusedUser() {
-      this.$store.dispatch("setFocusedUser", this.user.id.value);
+    async goToSelectedUser() {
+      await this.$store.dispatch("setFocusedUser", this.user.userId);
+      this.$store.dispatch("setIsOpened", true);
+      this.$router.push({name: 'Home', params: { id: this.user.userId} })
     },
   },
   computed: {

@@ -3,10 +3,10 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
-    path: "/",
+    path: "/:id?",
     name: "Home",
     component: Home
-  }
+  },
 ];
 
 const router = createRouter({

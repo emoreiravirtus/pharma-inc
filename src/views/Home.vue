@@ -1,38 +1,38 @@
 <template>
   <div class="container">
     <Modal>
-      <p>Elias</p>
+      <FocusedUser />
     </Modal>
-    <SearchingBar />
     <Table />
-    <Loading @click="loadMore" :isLoading="isLoading"/>
-  </div> 
+    <Loading @click="loadMore" :isLoading="isLoading" />
+  </div>
 </template>
 
 <script>
-
-import Loading from './components/Loading.vue'
-import Modal from './components/Modal.vue'
-import SearchingBar from './components/SearchingBar.vue'
-import Table from './components/Table.vue'
-
+import Loading from "./components/Loading.vue";
+import Modal from "./components/Modal.vue";
+import Table from "./components/Table.vue";
+import FocusedUser from "./components/FocusedUser.vue";
 
 export default {
   name: "Home",
   components: {
     Loading,
     Modal,
-    SearchingBar,
     Table,
+    FocusedUser,
   },
-  data () {
+  data() {
     return {
-      page: 1
-    }
+      page: 1,
+    };
   },
-  async beforeMount()  {
+  async beforeMount() {
+    if (this.$route.params.id) {
+      await this.$store.dispatch("setFocusedUser", this.$route.params.id);
+      this.$store.dispatch("setIsOpened", true);
+    }
     await this.$store.dispatch("addToUserList", this.page);
-    this.$store.dispatch("getFocusedUser");
     this.$store.dispatch("filterUsers");
     this.page = this.page + 1;
   },
@@ -40,15 +40,17 @@ export default {
     loadMore() {
       this.$store.dispatch("addToUserList", this.page);
       this.page = this.page + 1;
-    }
+    },
   },
   computed: {
     isLoading() {
       return this.$store.getters["isLoading"];
+    },
+    isOpened() {
+      return this.$store.getters["isOpened"];
     }
-  }
+  },
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

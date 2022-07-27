@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 import orderByName from "../util/orderByName.js";
 import orderByGender from "../util/orderByGender.js";
 import orderByBirth from "../util/orderByBirth.js";
+import getPageNumber from "../util/getPageNumber.js";
 
 export default createStore({
   state: {
@@ -18,19 +19,21 @@ export default createStore({
     },
   },
   mutations: {
-    addUsers: (state, users) => state.users = state.users.concat(users),
-    setFocusedUser: (state, focusedUser) => state.focusedUser = focusedUser,
-    setIsLoading: (state, isLoading) => state.isLoading = isLoading,
-    setIsOpened: (state, isOpened) => state.isOpened = isOpened,
-    setFilteredUsers: (state, filteredUsers) => state.filteredUsers = filteredUsers,
-    setOrderBy: (state, orderBy) => state.filter.orderBy = orderBy,
-    setIncreasing: (state, increasing) => state.filter.increasing = increasing,
+    addUsers: (state, users) => (state.users = state.users.concat(users)),
+    setIsLoading: (state, isLoading) => (state.isLoading = isLoading),
+    setIsOpened: (state, isOpened) => (state.isOpened = isOpened),
+    setFocusedUser: (state, focusedUser) => (state.focusedUser = focusedUser),
+    setFilteredUsers: (state, filteredUsers) =>
+      (state.filteredUsers = filteredUsers),
+    setOrderBy: (state, orderBy) => (state.filter.orderBy = orderBy),
+    setIncreasing: (state, increasing) =>
+      (state.filter.increasing = increasing),
   },
   getters: {
     users: (state) => state.users,
-    focusedUser: (state) => state.focusedUser,
     isLoading: (state) => state.isLoading,
     isOpened: (state) => state.isOpened,
+    focusedUser: (state) => state.focusedUser,
     orderBy: (state) => state.filter.orderBy,
     increasing: (state) => state.filter.increasing,
   },
@@ -41,10 +44,17 @@ export default createStore({
       const response = await fetch(
         `https://randomuser.me/api/?page=${page}&results=50&seed=pharmaincelias`
       );
-      const users = await response.json();
-      console.log(users.results);
+      const { results } = await response.json();
 
-      context.commit("addUsers", users.results);
+      let index = page * 50 - 49;
+
+      let indexedUsers = results.map((user) => {
+        user.userId = index;
+        index++;
+        return user;
+      });
+
+      context.commit("addUsers", indexedUsers);
       context.dispatch("setIsLoading", false);
       context.dispatch("filterUsers");
     },
@@ -54,53 +64,57 @@ export default createStore({
     setIsOpened(context, isOpened) {
       context.commit("setIsOpened", isOpened);
     },
-    setFocusedUser(context, user) {
-      context.dispatch("setIsOpened", true);
+    async setFocusedUser(context, id) {
+      if (!id) context.commit("setFocusedUser", {});
+
+      const page = getPageNumber(id);
+
+      const response = await fetch(
+        `https://randomuser.me/api/?page=${page}&results=50&seed=pharmaincelias`
+      );
+      const { results } = await response.json();
+      const user = results[Number(id) - page * 50 + 49];
+
       context.commit("setFocusedUser", user);
     },
-    async getFocusedUser() {
-      const response = await fetch(
-        "https://randomuser.me/api/?name=Simon&seed=pharmaincelias"
-      );
-      const users = await response.json();
-      console.log(users);
-    },
     filterUsers({ commit, state }) {
-      console.log(state.users);
       let filteredUsers = state.users;
       const orderBy = state.filter.orderBy;
       const increasing = state.filter.increasing;
       let filterFunction;
 
-      if(orderBy === 'name') {
-        filterFunction = increasing ? orderByName.increasing : orderByName.decreasing;
+      if (orderBy === "name") {
+        filterFunction = increasing
+          ? orderByName.increasing
+          : orderByName.decreasing;
       }
 
-      if(orderBy === 'gender') {
-        filterFunction = increasing ? orderByGender.increasing : orderByGender.decreasing;
+      if (orderBy === "gender") {
+        filterFunction = increasing
+          ? orderByGender.increasing
+          : orderByGender.decreasing;
       }
 
-      if(orderBy === 'birth') {
-        filterFunction = increasing ? orderByBirth.increasing : orderByBirth.decreasing;
+      if (orderBy === "birth") {
+        filterFunction = increasing
+          ? orderByBirth.increasing
+          : orderByBirth.decreasing;
       }
 
-      if(orderBy !== '') {
+      if (orderBy !== "") {
         filteredUsers.sort(filterFunction);
-      
-        commit('setFilteredUsers', filteredUsers);
-      }
 
-      
+        commit("setFilteredUsers", filteredUsers);
+      }
     },
-    setOrderBy( { dispatch, commit, state }, orderBy ) {
-
-      if(state.filter.orderBy === orderBy) {
-        commit('setIncreasing', !state.filter.increasing)
+    setOrderBy({ dispatch, commit, state }, orderBy) {
+      if (state.filter.orderBy === orderBy) {
+        commit("setIncreasing", !state.filter.increasing);
       }
 
-      commit('setOrderBy', orderBy);
-      dispatch('filterUsers');
-    }
+      commit("setOrderBy", orderBy);
+      dispatch("filterUsers");
+    },
   },
   modules: {},
 });
