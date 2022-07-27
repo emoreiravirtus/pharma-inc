@@ -28,13 +28,7 @@
         </p>
       </div>
       <div class="col-5 left pl-s">
-        <p class="font-s-m">
-          <span class="font-s-l">Location:</span>
-          {{ focusedUser.location.street.name }},
-          {{ focusedUser.location.street.number }},
-          {{ focusedUser.location.city }} ({{ focusedUser.location.state }}) -
-          {{ focusedUser.location.country }}
-        </p>
+        <p class="font-s-m"><span class="font-s-l">ID:</span> {{ userId }}</p>
       </div>
       <div class="col-5 right pr-s">
         <p class="font-s-m">
@@ -46,10 +40,16 @@
           <span class="font-s-l">Nationality:</span> {{ focusedUser.nat }}
         </p>
       </div>
-      <div class="col-5 right pr-s">
-        <p class="font-s-m"><span class="font-s-l">ID:</span> {{ userId }}</p>
+      <div class="col-12 center pr-s">
+        <p class="font-s-m">
+          <span class="font-s-l">Location:</span>
+          {{ focusedUser.location.street.name }},
+          {{ focusedUser.location.street.number }},
+          {{ focusedUser.location.city }} ({{ focusedUser.location.state }}) -
+          {{ focusedUser.location.country }}
+        </p>
       </div>
-      <div class="col-5 left pl-s">
+      <div class="col-12 center pl-s">
         <p class="font-s-m">
           <span class="font-s-l">URL:</span>
         </p>
@@ -95,7 +95,11 @@ export default {
       return this.$route.params.id;
     },
     userURL() {
-      return `${process.env.VUE_APP_BASE_URL_DEV}${this.userId}`;
+      let baseUrl = process.env.VUE_APP_BASE_URL_PROD;
+      if (window.webpackHotUpdate) {
+      baseUrl = process.env.VUE_APP_BASE_URL_DEV
+      }
+      return `${baseUrl}${this.userId}`;
     },
   },
 };
