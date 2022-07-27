@@ -86,7 +86,7 @@ table {
       border: 2px solid $colors-primary;
       border-radius: 5px;
       height: 15px;
-      transition: .2s all;
+      transition: 0.2s all;
 
       &:hover {
         background: $colors-primary;

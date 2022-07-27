@@ -23,9 +23,9 @@ export default {
   name: "SearchingBar",
   data() {
     return {
-      searchTerm: ''
-    }
-  }
+      searchTerm: "",
+    };
+  },
 };
 </script>
 
@@ -47,7 +47,7 @@ export default {
   transform: translateX(-50px);
   background: $colors-secondary;
   border-radius: 5px;
-  transition: .1s all;
+  transition: 0.1s all;
 
   &:hover {
     transform: translateY(-5px) translateX(-50px);

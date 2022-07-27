@@ -1,32 +1,41 @@
 <template>
   <div class="m-m">
-  <div class="container loading-container clickable">
-    <div class="row">
-      <div class="col-8">
-        <div class="row">
-          <div class="col-12 center font-s-l">
-            <p v-if="!isLoading">Load More</p>
-            <p v-if="isLoading">Loading</p>
+    <div class="container loading-container clickable">
+      <div class="row">
+        <div class="col-8">
+          <div class="row">
+            <div class="col-12 center font-s-l">
+              <p v-if="!isLoading">Load More</p>
+              <p v-if="isLoading">Loading</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-4 center">
-        <div class="loading-icon container center p-xxs">
-          <div class="row">
-            <div class="col-4 center">
-              <div class="loading-ball shadowed loading-ball__first" :class="{'loading-ball__animated': isLoading}"></div>
-            </div>
-            <div class="col-4 center">
-              <div class="loading-ball shadowed loading-ball__second" :class="{'loading-ball__animated': isLoading}"></div>
-            </div>
-            <div class="col-4 center">
-              <div class="loading-ball shadowed loading-ball__third" :class="{'loading-ball__animated': isLoading}"></div>
+        <div class="col-4 center">
+          <div class="loading-icon container center p-xxs">
+            <div class="row">
+              <div class="col-4 center">
+                <div
+                  class="loading-ball shadowed loading-ball__first"
+                  :class="{ 'loading-ball__animated': isLoading }"
+                ></div>
+              </div>
+              <div class="col-4 center">
+                <div
+                  class="loading-ball shadowed loading-ball__second"
+                  :class="{ 'loading-ball__animated': isLoading }"
+                ></div>
+              </div>
+              <div class="col-4 center">
+                <div
+                  class="loading-ball shadowed loading-ball__third"
+                  :class="{ 'loading-ball__animated': isLoading }"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -36,9 +45,9 @@ export default {
   props: {
     isLoading: {
       type: Boolean,
-      default: () => false
-    }
-  }
+      default: () => false,
+    },
+  },
 };
 </script>
 
@@ -48,7 +57,7 @@ export default {
   border: 2px solid $colors-primary;
   border-radius: 20px;
   color: $colors-primary;
-  transition: .2s all;
+  transition: 0.2s all;
 
   &:hover {
     transform: translateY(-5px);
@@ -64,7 +73,7 @@ export default {
     height: 5px;
     background: $colors-primary;
     border-radius: 50%;
-    transition: all .2s;
+    transition: all 0.2s;
 
     &__animated {
       animation: 1.5s infinite loading;

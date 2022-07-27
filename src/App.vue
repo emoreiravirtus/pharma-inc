@@ -4,15 +4,15 @@
 </template>
 
 <script>
-import NavBar from './views/components/NavBar.vue';
+import NavBar from "./views/components/NavBar.vue";
 
 export default {
   components: {
-    NavBar
-  }
-}
+    NavBar,
+  },
+};
 </script>
 
 <style lang="scss">
-@import '@/scss/styles.scss';
+@import "@/scss/styles.scss";
 </style>

@@ -48,7 +48,7 @@ export default {
     },
     isOpened() {
       return this.$store.getters["isOpened"];
-    }
+    },
   },
 };
 </script>

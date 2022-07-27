@@ -40,7 +40,7 @@ export default {
     async goToSelectedUser() {
       await this.$store.dispatch("setFocusedUser", this.user.userId);
       this.$store.dispatch("setIsOpened", true);
-      this.$router.push({name: 'Home', params: { id: this.user.userId} })
+      this.$router.push({ name: "Home", params: { id: this.user.userId } });
     },
   },
   computed: {

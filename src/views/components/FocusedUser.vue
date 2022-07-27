@@ -51,10 +51,13 @@
       </div>
       <div class="col-5 left pl-s">
         <p class="font-s-m">
-          <span class="font-s-l">URL:</span> 
+          <span class="font-s-l">URL:</span>
         </p>
         <div class="left ml-s">
-          <Button @click="copyURL" class="url-button">{{ userURL }}<img class="svg-icon-copy-secondary ml-s"> <span class="ml-s">{{ copyText }}</span> </Button>
+          <Button @click="copyURL" class="url-button"
+            >{{ userURL }}<img class="svg-icon-copy-secondary ml-s" />
+            <span class="ml-s">{{ copyText }}</span>
+          </Button>
         </div>
       </div>
     </div>
@@ -69,17 +72,17 @@ export default {
   name: "FocusedUser",
   data() {
     return {
-      copyText: 'copy',
-    }
+      copyText: "copy",
+    };
   },
   components: {
-    Button
+    Button,
   },
   methods: {
     copyURL() {
       navigator.clipboard.writeText(this.userURL);
-      this.copyText = 'copied!'
-    }
+      this.copyText = "copied!";
+    },
   },
   computed: {
     focusedUser() {
@@ -92,8 +95,8 @@ export default {
       return this.$route.params.id;
     },
     userURL() {
-      return `localhost:8080/${ this.userId }`
-    }
+      return `localhost:8080/${this.userId}`;
+    },
   },
 };
 </script>
